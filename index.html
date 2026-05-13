@@ -27,6 +27,8 @@
             --radius-xs: 6px;
             --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             --gold: #b8943a;
+            --gold-light: #d4af37;
+            --gold-pale: #f5ecd7;
         }
 
         * {
@@ -46,6 +48,7 @@
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+            padding-bottom: 0;
         }
 
         h1,
@@ -119,15 +122,20 @@
             font-weight: 500;
         }
 
-        /* Navbar Black */
+        /* Navbar Black - Professional */
         .navbar {
             background: #000;
             position: sticky;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid #222;
-            padding: 0.75rem 0;
+            padding: 0.65rem 0;
             transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            padding: 0.5rem 0;
         }
 
         .navbar .container {
@@ -174,30 +182,31 @@
 
         .nav-links {
             display: flex;
-            gap: 1.8rem;
+            gap: 1.6rem;
             list-style: none;
             align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #ccc;
+            color: #bbb;
             font-weight: 500;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             letter-spacing: 0.07em;
             text-transform: uppercase;
             transition: color 0.3s;
             position: relative;
+            padding: 0.25rem 0;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -4px;
+            bottom: -2px;
             left: 0;
             width: 0;
-            height: 2px;
-            background: #fff;
+            height: 1.5px;
+            background: var(--gold-light);
             transition: width 0.3s;
         }
 
@@ -264,12 +273,86 @@
             }
         }
 
-        /* Hero */
+        /* Mobile Bottom Navigation */
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #000;
+            z-index: 1001;
+            border-top: 1px solid #222;
+            padding: 0.5rem 0.3rem;
+            padding-bottom: env(safe-area-inset-bottom, 0.5rem);
+        }
+
+        .mobile-bottom-nav .bottom-nav-inner {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .mobile-bottom-nav a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            padding: 0.3rem 0.5rem;
+            border-radius: 8px;
+        }
+
+        .mobile-bottom-nav a i {
+            font-size: 1.1rem;
+        }
+
+        .mobile-bottom-nav a.active,
+        .mobile-bottom-nav a:hover {
+            color: #fff;
+        }
+
+        .mobile-bottom-nav a.whatsapp-nav i {
+            color: #25D366;
+            font-size: 1.4rem;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-bottom-nav {
+                display: block;
+            }
+
+            body {
+                padding-bottom: 75px;
+            }
+
+            .whatsapp-float {
+                bottom: 5.5rem !important;
+            }
+
+            .back-to-top {
+                bottom: 9rem !important;
+            }
+        }
+
+        /* Hero Video 16:9 No Zoom */
         .hero {
             position: relative;
             width: 100%;
-            height: 100vh;
+            background: #000;
             overflow: hidden;
+        }
+
+        .hero-video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
             background: #000;
         }
 
@@ -279,42 +362,43 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             pointer-events: none;
+            background: #000;
         }
 
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.35);
+            background: rgba(0, 0, 0, 0.3);
             z-index: 1;
         }
 
         .hero-content {
-            position: relative;
+            position: absolute;
             z-index: 2;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100%;
+            inset: 0;
             text-align: center;
             color: #fff;
             padding: 0 1rem;
         }
 
         .hero-content h2 {
-            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-size: clamp(2rem, 4vw, 3.2rem);
             font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             font-family: 'Playfair Display', serif;
         }
 
         .hero-content p {
-            font-size: 1.05rem;
-            max-width: 550px;
-            margin: 0 auto 2rem;
+            font-size: 0.95rem;
+            max-width: 500px;
+            margin: 0 auto 1.8rem;
             opacity: 0.9;
             font-weight: 300;
         }
@@ -369,6 +453,17 @@
             box-shadow: var(--shadow-md);
         }
 
+        .btn-gold {
+            background: var(--gold);
+            color: #fff;
+        }
+
+        .btn-gold:hover {
+            background: #a37e2e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(184, 148, 58, 0.3);
+        }
+
         /* Section Headers */
         .section-title {
             text-align: center;
@@ -396,6 +491,10 @@
             background: #000;
             margin: 0.5rem auto 1.5rem;
             border-radius: 2px;
+        }
+
+        .section-divider.gold {
+            background: var(--gold);
         }
 
         /* Luxury Watch Brands Slider */
@@ -473,7 +572,7 @@
             }
         }
 
-        /* Who We Are + Collage */
+        /* Who We Are + Magazine Collage */
         .who-we-are {
             padding: 5rem 0;
             background: #fafafa;
@@ -488,70 +587,271 @@
             line-height: 1.85;
         }
 
+        /* Asymmetrical Magazine Collage */
         .collage-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-areas:
-                "img6 img7"
-                "img8 img9"
-                "img10 img10";
+            grid-template-columns: 1.1fr 0.9fr 1fr;
+            grid-template-rows: auto auto auto;
             gap: 0.8rem;
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
+            padding: 0.5rem;
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            border: 2px solid #f0ece4;
         }
 
-        .collage-grid img {
+        .collage-grid .collage-img-wrap {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid #eee;
+        }
+
+        .collage-grid .collage-img-wrap:hover {
+            transform: scale(1.025);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold-light);
+        }
+
+        .collage-grid .collage-img-wrap img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: var(--radius-sm);
             display: block;
-            box-shadow: var(--shadow-sm);
+            transition: transform 0.6s ease;
+        }
+
+        .collage-grid .collage-img-wrap:hover img {
+            transform: scale(1.06);
+        }
+
+        .collage-img-wrap.img6-wrap {
+            grid-row: 1 / 3;
+            grid-column: 1 / 2;
+            aspect-ratio: 3/4.5;
+            min-height: 380px;
+        }
+
+        .collage-img-wrap.img7-wrap {
+            grid-row: 1 / 2;
+            grid-column: 2 / 4;
+            aspect-ratio: 16/7;
+            min-height: 160px;
+        }
+
+        .collage-img-wrap.img8-wrap {
+            grid-row: 2 / 3;
+            grid-column: 2 / 3;
+            aspect-ratio: 1/1;
+            min-height: 160px;
+        }
+
+        .collage-img-wrap.img9-wrap {
+            grid-row: 2 / 3;
+            grid-column: 3 / 4;
+            aspect-ratio: 1/1;
+            min-height: 160px;
+        }
+
+        .collage-img-wrap.img10-wrap {
+            grid-row: 3 / 4;
+            grid-column: 1 / 4;
+            aspect-ratio: 21/6;
+            min-height: 140px;
+        }
+
+        .collage-gold-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 2;
+        }
+
+        .collage-img-wrap:hover .collage-gold-accent {
+            opacity: 1;
+        }
+
+        @media (max-width: 700px) {
+            .collage-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto auto auto;
+                gap: 0.5rem;
+                padding: 0.3rem;
+            }
+
+            .collage-img-wrap.img6-wrap {
+                grid-row: 1 / 3;
+                grid-column: 1 / 2;
+                min-height: 280px;
+                aspect-ratio: 3/5;
+            }
+
+            .collage-img-wrap.img7-wrap {
+                grid-row: 1 / 2;
+                grid-column: 2 / 3;
+                min-height: 120px;
+                aspect-ratio: 4/3;
+            }
+
+            .collage-img-wrap.img8-wrap {
+                grid-row: 2 / 3;
+                grid-column: 2 / 3;
+                min-height: 120px;
+                aspect-ratio: 1/1;
+            }
+
+            .collage-img-wrap.img9-wrap {
+                grid-row: 3 / 4;
+                grid-column: 1 / 3;
+                min-height: 180px;
+                aspect-ratio: 4/3;
+            }
+
+            .collage-img-wrap.img10-wrap {
+                grid-row: 4 / 5;
+                grid-column: 1 / 3;
+                min-height: 100px;
+                aspect-ratio: 21/6;
+            }
+        }
+
+        /* Buying Process Section */
+        .buying-process-section {
+            padding: 5rem 0;
+            background: #fff;
+        }
+
+        .buying-process-section .process-intro {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.85;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border-radius: var(--radius);
+            background: #fafafa;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .process-step:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+            border-color: var(--gold-light);
+        }
+
+        .process-step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #000;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .process-step h4 {
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+            color: #000;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .process-step p {
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .process-steps {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .process-step {
+                padding: 1.5rem 1.2rem;
+            }
+        }
+
+        /* Video Showcase 16:9 */
+        .video-showcase {
+            padding: 4rem 0;
+            background: #fafafa;
+        }
+
+        .video-wrapper-16-9 {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            background: #000;
+            border: 2px solid #eee;
+        }
+
+        .video-wrapper-16-9 video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+
+        /* Full Width Image */
+        .full-width-image-section {
+            padding: 3rem 0;
+            background: #fff;
+        }
+
+        .full-width-image-section img {
+            width: 100%;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            display: block;
+            object-fit: cover;
+            max-height: 500px;
             transition: var(--transition);
         }
 
-        .collage-grid img:hover {
-            transform: scale(1.02);
-            box-shadow: var(--shadow-md);
+        .full-width-image-section img:hover {
+            box-shadow: var(--shadow-lg);
+            transform: scale(1.01);
         }
 
-        .collage-grid .img6 {
-            grid-area: img6;
-            aspect-ratio: 3/4;
-        }
-
-        .collage-grid .img7 {
-            grid-area: img7;
-            aspect-ratio: 4/3;
-        }
-
-        .collage-grid .img8 {
-            grid-area: img8;
-            aspect-ratio: 4/3;
-        }
-
-        .collage-grid .img9 {
-            grid-area: img9;
-            aspect-ratio: 4/3;
-        }
-
-        .collage-grid .img10 {
-            grid-area: img10;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        @media (max-width: 600px) {
-            .collage-grid {
-                gap: 0.5rem;
-            }
-
-            .collage-grid .img10 {
-                height: 140px;
-            }
-        }
-
-        /* Collection Grids (3x2) */
+        /* Collection Product Cards */
         .collection-section {
             padding: 4.5rem 0;
             background: #fff;
@@ -561,40 +861,167 @@
             background: #fafafa;
         }
 
-        .collection-grid {
+        .collection-grid-cards {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
-        .collection-grid .coll-img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border-radius: var(--radius-sm);
+        .watch-card {
+            background: #fff;
+            border-radius: var(--radius);
+            overflow: hidden;
             box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
             transition: var(--transition);
             cursor: pointer;
-            display: block;
+            display: flex;
+            flex-direction: column;
         }
 
-        .collection-grid .coll-img:hover {
-            transform: translateY(-4px);
+        .watch-card:hover {
+            transform: translateY(-6px);
             box-shadow: var(--shadow-lg);
+            border-color: #d5c89e;
         }
 
-        @media (max-width: 600px) {
-            .collection-grid {
+        .watch-card .watch-img-wrap {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            background: #f9f9f9;
+        }
+
+        .watch-card .watch-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .watch-card:hover .watch-img-wrap img {
+            transform: scale(1.08);
+        }
+
+        .watch-card .watch-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #000;
+            color: #fff;
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.8rem;
+            border-radius: 50px;
+            z-index: 2;
+        }
+
+        .watch-card .watch-badge.gold-badge {
+            background: var(--gold);
+        }
+
+        .watch-card .watch-info {
+            padding: 1.2rem 1rem;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .watch-card .watch-model {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #000;
+            margin-bottom: 0.25rem;
+            letter-spacing: 0.02em;
+        }
+
+        .watch-card .watch-ref {
+            font-size: 0.65rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .watch-card .watch-price {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: #000;
+            letter-spacing: 0.03em;
+        }
+
+        .watch-card .watch-price .currency {
+            font-size: 0.7rem;
+            color: #888;
+            font-weight: 400;
+        }
+
+        .watch-card .btn-card {
+            display: inline-block;
+            margin-top: 0.7rem;
+            padding: 0.5rem 1.4rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-radius: 50px;
+            text-decoration: none;
+            background: #000;
+            color: #fff;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            align-self: center;
+        }
+
+        .watch-card .btn-card:hover {
+            background: #222;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+            .collection-grid-cards {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .collection-grid-cards {
+                grid-template-columns: 1fr 1fr;
                 gap: 0.6rem;
+            }
+
+            .watch-card .watch-info {
+                padding: 0.8rem 0.5rem;
+            }
+
+            .watch-card .watch-model {
+                font-size: 0.75rem;
+            }
+
+            .watch-card .watch-price {
+                font-size: 0.9rem;
+            }
+
+            .watch-card .btn-card {
+                font-size: 0.55rem;
+                padding: 0.4rem 1rem;
             }
         }
 
         /* Explore Brands Grid */
         .brands-new {
             padding: 4.5rem 0;
-            background: #fafafa;
+            background: #fff;
         }
 
         .brands-new-grid {
@@ -623,6 +1050,7 @@
         .brand-mini-card:hover {
             box-shadow: var(--shadow-lg);
             transform: translateY(-4px);
+            border-color: #d5c89e;
         }
 
         .brand-mini-card img {
@@ -663,10 +1091,10 @@
             }
         }
 
-        /* Showroom */
+        /* Showroom 16:9 */
         .showroom-section {
             padding: 4.5rem 0;
-            background: #fff;
+            background: #fafafa;
         }
 
         .showroom-content {
@@ -691,6 +1119,8 @@
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow-md);
+            aspect-ratio: 16/9;
+            position: relative;
         }
 
         .showroom-img img {
@@ -698,7 +1128,8 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            aspect-ratio: 4/3;
+            position: absolute;
+            inset: 0;
         }
 
         @media (max-width: 768px) {
@@ -706,12 +1137,17 @@
                 flex-direction: column;
                 gap: 1.5rem;
             }
+
+            .showroom-img {
+                aspect-ratio: 16/9;
+                width: 100%;
+            }
         }
 
         /* Reviews */
         .reviews-section {
             padding: 4.5rem 0;
-            background: #fafafa;
+            background: #fff;
         }
 
         .reviews-grid {
@@ -773,10 +1209,10 @@
             }
         }
 
-        /* Horizontal Image Slider */
+        /* Horizontal Image Slider with Text Overlays */
         .image-slider-section {
             padding: 4rem 0;
-            background: #fff;
+            background: #fafafa;
         }
 
         .image-slider {
@@ -793,25 +1229,68 @@
             display: none;
         }
 
-        .image-slider .slide-img {
+        .image-slider .slide-card {
             flex: 0 0 auto;
             width: 280px;
-            aspect-ratio: 4/3;
-            object-fit: cover;
             border-radius: var(--radius-sm);
             scroll-snap-align: start;
             box-shadow: var(--shadow-sm);
             transition: var(--transition);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid var(--border-light);
         }
 
-        .image-slider .slide-img:hover {
-            transform: scale(1.03);
-            box-shadow: var(--shadow-md);
+        .image-slider .slide-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .image-slider .slide-card .slide-img-wrap {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-slider .slide-card .slide-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .image-slider .slide-card:hover .slide-img-wrap img {
+            transform: scale(1.07);
+        }
+
+        .image-slider .slide-card .slide-caption {
+            padding: 0.8rem 0.9rem;
+            text-align: center;
+        }
+
+        .image-slider .slide-card .slide-caption .slide-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 0.78rem;
+            color: #000;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.2rem;
+            text-transform: uppercase;
+        }
+
+        .image-slider .slide-card .slide-caption .slide-desc {
+            font-size: 0.65rem;
+            color: #777;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            line-height: 1.4;
         }
 
         @media (max-width: 600px) {
-            .image-slider .slide-img {
+            .image-slider .slide-card {
                 width: 220px;
             }
         }
@@ -819,7 +1298,7 @@
         /* Authentication Section */
         .auth-section {
             padding: 4.5rem 0;
-            background: #fafafa;
+            background: #fff;
         }
 
         .auth-content {
@@ -862,31 +1341,6 @@
             line-height: 1.85;
             text-align: left;
             margin-bottom: 0.5rem;
-        }
-
-        /* Video Showcase */
-        .video-showcase {
-            padding: 4rem 0;
-            background: #fff;
-        }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-md);
-            background: #000;
-        }
-
-        .video-wrapper video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
 
         /* Contact Form */
@@ -1120,6 +1574,12 @@
             letter-spacing: 0.03em;
         }
 
+        @media (max-width: 768px) {
+            .footer {
+                padding-bottom: 5rem;
+            }
+        }
+
         /* Floating Buttons */
         .whatsapp-float {
             position: fixed;
@@ -1182,7 +1642,7 @@
 
         @media (max-width: 600px) {
             .whatsapp-float {
-                bottom: 1.5rem;
+                bottom: 5.5rem;
                 right: 1rem;
                 width: 44px;
                 height: 44px;
@@ -1190,7 +1650,7 @@
             }
 
             .back-to-top {
-                bottom: 5rem;
+                bottom: 9rem;
                 right: 1rem;
                 width: 36px;
                 height: 36px;
@@ -1207,6 +1667,12 @@
         .reveal.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Second Video Section */
+        .video-showcase-alt {
+            padding: 4rem 0;
+            background: #fff;
         }
     </style>
 </head>
@@ -1234,10 +1700,12 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#brands">Brands</a></li>
                 <li><a href="#who">About</a></li>
+                <li><a href="#buying">Buying</a></li>
                 <li><a href="#rolex">Rolex</a></li>
                 <li><a href="#patek">Patek Philippe</a></li>
                 <li><a href="#rm">Richard Mille</a></li>
                 <li><a href="#ap">Audemars Piguet</a></li>
+                <li><a href="#explore">Explore</a></li>
                 <li><a href="#showroom">Showroom</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -1249,17 +1717,31 @@
         </div>
     </nav>
 
-    <!-- Hero Video -->
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav" id="mobileBottomNav">
+        <div class="bottom-nav-inner">
+            <a href="#home" class="active"><i class="fa-solid fa-house"></i><span>Home</span></a>
+            <a href="#brands"><i class="fa-solid fa-gem"></i><span>Brands</span></a>
+            <a href="#explore"><i class="fa-solid fa-compass"></i><span>Explore</span></a>
+            <a href="https://wa.me/18001234567" target="_blank" rel="noopener" class="whatsapp-nav"><i
+                    class="fa-brands fa-whatsapp"></i><span>Chat</span></a>
+            <a href="#contact"><i class="fa-solid fa-envelope"></i><span>Contact</span></a>
+        </div>
+    </nav>
+
+    <!-- Hero Video 16:9 No Zoom -->
     <section class="hero" id="home">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="videos/1.1.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay"></div>
-        <div class="hero-content reveal">
-            <h2>Royal Timepieces</h2>
-            <p>Discover TRX Royal Watches — an exclusive collection of the world's finest luxury timepieces.
-                Authenticity, elegance, and prestige delivered to your wrist.</p>
-            <a href="#brands" class="btn btn-light"><i class="fa-solid fa-gem"></i> Explore Collection</a>
+        <div class="hero-video-wrapper">
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="videos/1.1.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+            <div class="hero-content reveal">
+                <h2>Royal Timepieces</h2>
+                <p>Discover TRX Royal Watches — an exclusive collection of the world's finest luxury timepieces.
+                    Authenticity, elegance, and prestige delivered to your wrist.</p>
+                <a href="#brands" class="btn btn-light"><i class="fa-solid fa-gem"></i> Explore Collection</a>
+            </div>
         </div>
     </section>
 
@@ -1294,100 +1776,476 @@
         </div>
     </section>
 
-    <!-- Who We Are + Collage -->
+    <!-- Who We Are + Magazine Collage -->
     <section class="who-we-are" id="who">
         <div class="container">
             <h2 class="section-title reveal">WHO WE ARE</h2>
-            <div class="section-divider"></div>
+            <div class="section-divider gold"></div>
             <p class="who-text reveal">TRX Luxury Watches is a trusted watch dealer in Dubai with a vast collection of
                 high-end watches from Patek Philippe to Audemars Piguet. These pre-owned watches can be shipped
                 globally. Unlike other watch houses, we specialize in getting you the best deal on some of the most
                 exclusive watches. We also allow our clients to swap their existing premium watches for another one. We
                 are the only company in the UAE offering consignment services on watches around the globe. This allows
                 sellers to get the best price possible for their premium timepieces.</p>
+            <!-- Asymmetrical Magazine-Style Collage -->
             <div class="collage-grid reveal">
-                <img src="https://i.postimg.cc/85H4DmSM/6.jpg" alt="Watch 6" class="img6" loading="lazy">
-                <img src="https://i.postimg.cc/wvV2HQpm/7.jpg" alt="Watch 7" class="img7" loading="lazy">
-                <img src="https://i.postimg.cc/gJDsdHWR/8.jpg" alt="Watch 8" class="img8" loading="lazy">
-                <img src="https://i.postimg.cc/ydPjByH0/9.jpg" alt="Watch 9" class="img9" loading="lazy">
-                <img src="https://i.postimg.cc/63wcD1Df/10.jpg" alt="Watch 10" class="img10" loading="lazy">
+                <div class="collage-img-wrap img6-wrap">
+                    <div class="collage-gold-accent"></div>
+                    <img src="https://i.postimg.cc/85H4DmSM/6.jpg" alt="Luxury Watch 6" loading="lazy">
+                </div>
+                <div class="collage-img-wrap img7-wrap">
+                    <div class="collage-gold-accent"></div>
+                    <img src="https://i.postimg.cc/wvV2HQpm/7.jpg" alt="Luxury Watch 7" loading="lazy">
+                </div>
+                <div class="collage-img-wrap img8-wrap">
+                    <div class="collage-gold-accent"></div>
+                    <img src="https://i.postimg.cc/gJDsdHWR/8.jpg" alt="Luxury Watch 8" loading="lazy">
+                </div>
+                <div class="collage-img-wrap img9-wrap">
+                    <div class="collage-gold-accent"></div>
+                    <img src="https://i.postimg.cc/ydPjByH0/9.jpg" alt="Luxury Watch 9" loading="lazy">
+                </div>
+                <div class="collage-img-wrap img10-wrap">
+                    <div class="collage-gold-accent"></div>
+                    <img src="https://i.postimg.cc/63wcD1Df/10.jpg" alt="Luxury Watch 10" loading="lazy">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Rolex Collection -->
+    <!-- Buying Luxury Watches in Dubai -->
+    <section class="buying-process-section" id="buying">
+        <div class="container">
+            <h2 class="section-title reveal">Buying Luxury Watches in Dubai</h2>
+            <div class="section-divider gold"></div>
+            <p class="process-intro reveal">In order to make things seamless for you, we have a very subtle and direct
+                process of buying luxury pre-owned watches in Dubai. We have many new and used luxury watches in Dubai
+                to
+                choose from. You can find a suitable watch listing and hit the buy button. Upon paying through one of
+                the
+                available methods, you will get the watch delivered or you can choose to pick it up from our store.</p>
+            <div class="process-steps reveal">
+                <div class="process-step">
+                    <div class="process-step-number">01</div>
+                    <h4>Browse Our Collection</h4>
+                    <p>TRX Luxury watches has a wide selection of luxury watches available from different luxury brands,
+                        including Patek Philippe, Richard Mille and Audemars Piguet, among others. Browse through the
+                        watches that are available in stock on our website. All details are mentioned on the listing
+                        page
+                        along with pictures.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-number">02</div>
+                    <h4>Select Your Watch</h4>
+                    <p>Once you have glanced at all the new and pre-owned watches we offer, select the one you want.
+                        Take
+                        note of the case size, lug-to-lug measurement, and case thickness to determine the best fit for
+                        your wrist size.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-number">03</div>
+                    <h4>Make the Payment</h4>
+                    <p>TRX Luxury watches offers all types of payment methods. Pay online using credit/debit card or net
+                        banking, or drop a cheque or wire transfer. One of our agents will guide you through it and make
+                        the whole process hassle-free.</p>
+                </div>
+            </div>
+            <p style="text-align:center;margin-top:2rem;font-weight:600;color:#000;font-size:0.9rem;">That's it! Once we
+                receive confirmation along with the payment, we will ship the watch via our courier partners or send it
+                through one of our drivers. You should get the watch at your doorstep within <strong>72 hours</strong>
+                of
+                placing your order.</p>
+        </div>
+    </section>
+
+    <!-- Second Video Showcase -->
+    <section class="video-showcase-alt">
+        <div class="container">
+            <h2 class="section-title reveal">See Our Collection in Motion</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle reveal">Experience the Craftsmanship</p>
+            <div class="video-wrapper-16-9 reveal">
+                <video autoplay muted loop playsinline>
+                    <source src="videos/2.1.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Width Image 11 -->
+    <section class="full-width-image-section">
+        <div class="container">
+            <img src="https://i.postimg.cc/3w64GyZd/11.jpg" alt="TRX Luxury Collection" loading="lazy" class="reveal">
+        </div>
+    </section>
+
+    <!-- Rolex Collection with Cards -->
     <section class="collection-section" id="rolex">
         <div class="container">
             <h2 class="section-title reveal">Rolex Collection</h2>
             <div class="section-divider"></div>
             <p class="section-subtitle reveal">Timeless Elegance & Precision</p>
-            <div class="collection-grid reveal">
-                <img src="https://i.postimg.cc/Kv6JFzTj/12.jpg" alt="Rolex 1" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/tCK2yT6q/13.jpg" alt="Rolex 2" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/5Nhn10zx/14.jpg" alt="Rolex 3" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/VLxD16tk/15.jpg" alt="Rolex 4" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/m2v8RD9Z/16.jpg" alt="Rolex 5" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/3J4nPpkd/17.jpg" alt="Rolex 6" class="coll-img" loading="lazy">
+            <div class="collection-grid-cards reveal">
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge">Pre-Owned</span>
+                        <img src="https://i.postimg.cc/Kv6JFzTj/12.jpg" alt="Rolex Submariner Date" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">Submariner Date</h4>
+                        <p class="watch-ref">Ref. 126610LN</p>
+                        <p class="watch-price"><span class="currency">USD </span>$14,500</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge gold-badge">Hot Pick</span>
+                        <img src="https://i.postimg.cc/tCK2yT6q/13.jpg" alt="Rolex Daytona" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">Daytona</h4>
+                        <p class="watch-ref">Ref. 116500LN</p>
+                        <p class="watch-price"><span class="currency">USD </span>$28,900</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge">Pre-Owned</span>
+                        <img src="https://i.postimg.cc/5Nhn10zx/14.jpg" alt="Rolex GMT-Master II" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">GMT-Master II</h4>
+                        <p class="watch-ref">Ref. 126710BLRO</p>
+                        <p class="watch-price"><span class="currency">USD </span>$18,750</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge">Pre-Owned</span>
+                        <img src="https://i.postimg.cc/VLxD16tk/15.jpg" alt="Rolex Datejust 41" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">Datejust 41</h4>
+                        <p class="watch-ref">Ref. 126334</p>
+                        <p class="watch-price"><span class="currency">USD </span>$9,800</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge gold-badge">Rare</span>
+                        <img src="https://i.postimg.cc/m2v8RD9Z/16.jpg" alt="Rolex Day-Date 40" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">Day-Date 40</h4>
+                        <p class="watch-ref">Ref. 228238</p>
+                        <p class="watch-price"><span class="currency">USD </span>$35,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge">Pre-Owned</span>
+                        <img src="https://i.postimg.cc/3J4nPpkd/17.jpg" alt="Rolex Yacht-Master" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">Yacht-Master</h4>
+                        <p class="watch-ref">Ref. 126622</p>
+                        <p class="watch-price"><span class="currency">USD </span>$16,200</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Patek Philippe Collection -->
+    <!-- Patek Philippe Collection with Cards -->
     <section class="collection-section bg-light" id="patek">
         <div class="container">
             <h2 class="section-title reveal">Patek Philippe Collection</h2>
-            <div class="section-divider"></div>
+            <div class="section-divider gold"></div>
             <p class="section-subtitle reveal">Heritage & Haute Horlogerie</p>
-            <div class="collection-grid reveal">
-                <img src="https://i.postimg.cc/DzyCpNsq/18.jpg" alt="Patek 1" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/SKNZ1P88/19.jpg" alt="Patek 2" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/W4b9Yyrg/20.jpg" alt="Patek 3" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/1z5W7d6F/21.jpg" alt="Patek 4" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/mr2dpnMH/22.jpg" alt="Patek 5" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/g2KSDpwH/23.jpg" alt="Patek 6" class="coll-img" loading="lazy">
+            <div class="collection-grid-cards reveal">
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge gold-badge">Grail</span>
+                        <img src="https://i.postimg.cc/DzyCpNsq/18.jpg" alt="Patek Philippe Nautilus" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">Nautilus 5711</h4>
+                        <p class="watch-ref">Ref. 5711/1A-010</p>
+                        <p class="watch-price"><span class="currency">USD </span>$95,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge">Pre-Owned</span>
+                        <img src="https://i.postimg.cc/SKNZ1P88/19.jpg" alt="Patek Philippe Aquanaut" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">Aquanaut</h4>
+                        <p class="watch-ref">Ref. 5167A-001</p>
+                        <p class="watch-price"><span class="currency">USD </span>$52,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge">Pre-Owned</span>
+                        <img src="https://i.postimg.cc/W4b9Yyrg/20.jpg" alt="Patek Philippe Calatrava" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">Calatrava</h4>
+                        <p class="watch-ref">Ref. 5227J-001</p>
+                        <p class="watch-price"><span class="currency">USD </span>$22,500</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge">Pre-Owned</span>
+                        <img src="https://i.postimg.cc/1z5W7d6F/21.jpg" alt="Patek Philippe Complications"
+                            loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">Complications</h4>
+                        <p class="watch-ref">Ref. 5396R-011</p>
+                        <p class="watch-price"><span class="currency">USD </span>$42,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge gold-badge">Masterpiece</span>
+                        <img src="https://i.postimg.cc/mr2dpnMH/22.jpg" alt="Patek Philippe Grand Complications"
+                            loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">Grand Complications</h4>
+                        <p class="watch-ref">Ref. 5270J-001</p>
+                        <p class="watch-price"><span class="currency">USD </span>$78,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge">Pre-Owned</span>
+                        <img src="https://i.postimg.cc/g2KSDpwH/23.jpg" alt="Patek Philippe World Time" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">World Time</h4>
+                        <p class="watch-ref">Ref. 5230R-001</p>
+                        <p class="watch-price"><span class="currency">USD </span>$55,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Richard Mille Collection -->
+    <!-- Richard Mille Collection with Cards -->
     <section class="collection-section" id="rm">
         <div class="container">
             <h2 class="section-title reveal">Richard Mille Collection</h2>
             <div class="section-divider"></div>
             <p class="section-subtitle reveal">Ultra-Luxury & Innovation</p>
-            <div class="collection-grid reveal">
-                <img src="https://i.postimg.cc/PfZMyH9X/24.jpg" alt="RM 1" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/sfSJmzqy/25.jpg" alt="RM 2" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/Dfsc6hHn/26.jpg" alt="RM 3" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/SQ8Gd434/27.jpg" alt="RM 4" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/xjHP5Qh2/28.jpg" alt="RM 5" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/bYbRgPWc/29.jpg" alt="RM 6" class="coll-img" loading="lazy">
+            <div class="collection-grid-cards reveal">
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge gold-badge">Exclusive</span>
+                        <img src="https://i.postimg.cc/PfZMyH9X/24.jpg" alt="RM 055 Bubba Watson" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">RM 055</h4>
+                        <p class="watch-ref">Bubba Watson</p>
+                        <p class="watch-price"><span class="currency">USD </span>$185,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge">Pre-Owned</span>
+                        <img src="https://i.postimg.cc/sfSJmzqy/25.jpg" alt="RM 011 Flyback" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">RM 011</h4>
+                        <p class="watch-ref">Flyback Chronograph</p>
+                        <p class="watch-price"><span class="currency">USD </span>$145,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge">Pre-Owned</span>
+                        <img src="https://i.postimg.cc/Dfsc6hHn/26.jpg" alt="RM 030" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">RM 030</h4>
+                        <p class="watch-ref">Automatic</p>
+                        <p class="watch-price"><span class="currency">USD </span>$120,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge gold-badge">Grail</span>
+                        <img src="https://i.postimg.cc/SQ8Gd434/27.jpg" alt="RM 035 Rafael Nadal" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">RM 035</h4>
+                        <p class="watch-ref">Rafael Nadal</p>
+                        <p class="watch-price"><span class="currency">USD </span>$210,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge">Pre-Owned</span>
+                        <img src="https://i.postimg.cc/xjHP5Qh2/28.jpg" alt="RM 010" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">RM 010</h4>
+                        <p class="watch-ref">Automatic</p>
+                        <p class="watch-price"><span class="currency">USD </span>$95,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge">Pre-Owned</span>
+                        <img src="https://i.postimg.cc/bYbRgPWc/29.jpg" alt="RM 67-01" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">RM 67-01</h4>
+                        <p class="watch-ref">Extra Flat</p>
+                        <p class="watch-price"><span class="currency">USD </span>$160,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Audemars Piguet Collection -->
+    <!-- Audemars Piguet Collection with Cards -->
     <section class="collection-section bg-light" id="ap">
         <div class="container">
             <h2 class="section-title reveal">Audemars Piguet Collection</h2>
-            <div class="section-divider"></div>
+            <div class="section-divider gold"></div>
             <p class="section-subtitle reveal">Royal Oak & Beyond</p>
-            <div class="collection-grid reveal">
-                <img src="https://i.postimg.cc/FFgL1Hw3/30.jpg" alt="AP 1" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/qBX3gvWh/31.jpg" alt="AP 2" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/CMHqdx9R/32.jpg" alt="AP 3" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/zDSg3G4R/33.jpg" alt="AP 4" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/SQ7MjxHX/34.jpg" alt="AP 5" class="coll-img" loading="lazy">
-                <img src="https://i.postimg.cc/zDSg3G45/35.jpg" alt="AP 6" class="coll-img" loading="lazy">
+            <div class="collection-grid-cards reveal">
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge gold-badge">Iconic</span>
+                        <img src="https://i.postimg.cc/FFgL1Hw3/30.jpg" alt="Royal Oak 15500ST" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">Royal Oak 15500ST</h4>
+                        <p class="watch-ref">Ref. 15500ST.OO.1220ST.01</p>
+                        <p class="watch-price"><span class="currency">USD </span>$38,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge">Pre-Owned</span>
+                        <img src="https://i.postimg.cc/qBX3gvWh/31.jpg" alt="Royal Oak Offshore" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">Royal Oak Offshore</h4>
+                        <p class="watch-ref">Ref. 26470ST.OO.A101CR.01</p>
+                        <p class="watch-price"><span class="currency">USD </span>$32,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge">Pre-Owned</span>
+                        <img src="https://i.postimg.cc/CMHqdx9R/32.jpg" alt="Royal Oak Chronograph" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">Royal Oak Chronograph</h4>
+                        <p class="watch-ref">Ref. 26331ST.OO.1220ST.01</p>
+                        <p class="watch-price"><span class="currency">USD </span>$45,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge">Pre-Owned</span>
+                        <img src="https://i.postimg.cc/zDSg3G4R/33.jpg" alt="Royal Oak 15400ST" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">Royal Oak 15400ST</h4>
+                        <p class="watch-ref">Ref. 15400ST.OO.1220ST.01</p>
+                        <p class="watch-price"><span class="currency">USD </span>$35,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge gold-badge">Rare</span>
+                        <img src="https://i.postimg.cc/SQ7MjxHX/34.jpg" alt="Royal Oak Concept" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">Royal Oak Concept</h4>
+                        <p class="watch-ref">Ref. 26265FO.OO.D002CR.01</p>
+                        <p class="watch-price"><span class="currency">USD </span>$180,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
+                <div class="watch-card">
+                    <div class="watch-img-wrap">
+                        <span class="watch-badge gold-badge">Jumbo</span>
+                        <img src="https://i.postimg.cc/zDSg3G45/35.jpg" alt="Royal Oak 15202ST" loading="lazy">
+                    </div>
+                    <div class="watch-info">
+                        <h4 class="watch-model">Royal Oak 15202ST</h4>
+                        <p class="watch-ref">Ref. 15202ST.OO.1240ST.01</p>
+                        <p class="watch-price"><span class="currency">USD </span>$72,000</p>
+                        <a href="#contact" class="btn-card">Inquire Now</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Visit Our Showroom -->
+    <!-- Explore Brands (Moved Before Showroom) -->
+    <section class="brands-new" id="explore">
+        <div class="container">
+            <h2 class="section-title reveal">Explore Brands</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle reveal">World-Renowned Watchmakers — 4 on Left, 4 on Right</p>
+            <div class="brands-new-grid reveal">
+                <div class="brand-mini-card"><img src="https://i.postimg.cc/C5X6xrZG/ddddd.avif" alt="Piaget"
+                        loading="lazy"><span class="brand-name-tag">PIAGET</span></div>
+                <div class="brand-mini-card"><img src="https://i.postimg.cc/KzXP4XQv/gggg-removebg-preview.png"
+                        alt="Vacheron Constantin" loading="lazy"><span class="brand-name-tag">VACHERON
+                        CONSTANTIN</span></div>
+                <div class="brand-mini-card"><img src="https://i.postimg.cc/vTkSZ219/rrr.webp" alt="Harry Winston"
+                        loading="lazy"><span class="brand-name-tag">HARRY WINSTON</span></div>
+                <div class="brand-mini-card"><img src="https://i.postimg.cc/9MVYQtgy/h.avif" alt="Rolex"
+                        loading="lazy"><span class="brand-name-tag">ROLEX</span></div>
+                <div class="brand-mini-card"><img src="https://i.postimg.cc/vTcNMwmt/yyyyy.avif" alt="F.P. Journe"
+                        loading="lazy"><span class="brand-name-tag">F.P. JOURNE</span></div>
+                <div class="brand-mini-card"><img src="https://i.postimg.cc/G2rxmJgD/j.avif" alt="Chopard"
+                        loading="lazy"><span class="brand-name-tag">CHOPARD</span></div>
+                <div class="brand-mini-card"><img src="https://i.postimg.cc/B6sBnc71/k.webp" alt="Graff"
+                        loading="lazy"><span class="brand-name-tag">GRAFF</span></div>
+                <div class="brand-mini-card"><img src="https://i.postimg.cc/63wfpLbq/l.webp" alt="Hublot"
+                        loading="lazy"><span class="brand-name-tag">HUBLOT</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit Our Showroom 16:9 -->
     <section class="showroom-section" id="showroom">
         <div class="container">
             <h2 class="section-title reveal">Visit Our Showroom</h2>
-            <div class="section-divider"></div>
+            <div class="section-divider gold"></div>
             <p class="section-subtitle reveal">Where Luxury Meets Ease</p>
             <div class="showroom-content reveal">
                 <div class="showroom-text">
@@ -1446,19 +2304,73 @@
         </div>
     </section>
 
-    <!-- Horizontal Image Slider -->
-    <section class="image-slider-section">
+    <!-- Our Gallery with Text Overlays -->
+    <section class="image-slider-section" id="gallery">
         <div class="container">
-            <h2 class="section-title reveal">Our Gallery</h2>
-            <div class="section-divider"></div>
+            <h2 class="section-title reveal">Our Gallery & Services</h2>
+            <div class="section-divider gold"></div>
             <p class="section-subtitle reveal">Explore the World of TRX</p>
             <div class="image-slider reveal">
-                <img src="https://i.postimg.cc/sgpdCbvN/37.jpg" alt="Gallery 1" class="slide-img" loading="lazy">
-                <img src="https://i.postimg.cc/9QG5Hsrg/38.jpg" alt="Gallery 2" class="slide-img" loading="lazy">
-                <img src="https://i.postimg.cc/Mpk24zpJ/39.jpg" alt="Gallery 3" class="slide-img" loading="lazy">
-                <img src="https://i.postimg.cc/K8nShCRq/40.jpg" alt="Gallery 4" class="slide-img" loading="lazy">
-                <img src="https://i.postimg.cc/6psJSBpJ/41.jpg" alt="Gallery 5" class="slide-img" loading="lazy">
-                <img src="https://i.postimg.cc/Z5ktgJKG/42.jpg" alt="Gallery 6" class="slide-img" loading="lazy">
+                <!-- Slide 1 -->
+                <div class="slide-card">
+                    <div class="slide-img-wrap">
+                        <img src="https://i.postimg.cc/sgpdCbvN/37.jpg" alt="Sell Luxury Watches" loading="lazy">
+                    </div>
+                    <div class="slide-caption">
+                        <p class="slide-title">Sell Luxury Watches</p>
+                        <p class="slide-desc">Sell your watch to us in 15 mins</p>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide-card">
+                    <div class="slide-img-wrap">
+                        <img src="https://i.postimg.cc/9QG5Hsrg/38.jpg" alt="Watch Servicing" loading="lazy">
+                    </div>
+                    <div class="slide-caption">
+                        <p class="slide-title">Watch Servicing</p>
+                        <p class="slide-desc">Regular servicing & repairs for high-end timepieces</p>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="slide-card">
+                    <div class="slide-img-wrap">
+                        <img src="https://i.postimg.cc/Mpk24zpJ/39.jpg" alt="Watch Accessories" loading="lazy">
+                    </div>
+                    <div class="slide-caption">
+                        <p class="slide-title">Explore Accessories</p>
+                        <p class="slide-desc">Wide range of watch accessories</p>
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="slide-card">
+                    <div class="slide-img-wrap">
+                        <img src="https://i.postimg.cc/K8nShCRq/40.jpg" alt="Trade Watches" loading="lazy">
+                    </div>
+                    <div class="slide-caption">
+                        <p class="slide-title">Trade High-End Watches</p>
+                        <p class="slide-desc">Trade your watch for another one</p>
+                    </div>
+                </div>
+                <!-- Slide 5 -->
+                <div class="slide-card">
+                    <div class="slide-img-wrap">
+                        <img src="https://i.postimg.cc/6psJSBpJ/41.jpg" alt="Buy Premium Watches" loading="lazy">
+                    </div>
+                    <div class="slide-caption">
+                        <p class="slide-title">Buy Premium Watches</p>
+                        <p class="slide-desc">Buy your next luxury watch from us</p>
+                    </div>
+                </div>
+                <!-- Slide 6 -->
+                <div class="slide-card">
+                    <div class="slide-img-wrap">
+                        <img src="https://i.postimg.cc/Z5ktgJKG/42.jpg" alt="Consign Your Watch" loading="lazy">
+                    </div>
+                    <div class="slide-caption">
+                        <p class="slide-title">Consign Your Watch</p>
+                        <p class="slide-desc">Consign your watch with us</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1509,15 +2421,15 @@
         </div>
     </section>
 
-    <!-- Video Showcase -->
+    <!-- Video Showcase (Original 2.1) -->
     <section class="video-showcase">
         <div class="container">
             <h2 class="section-title reveal">Watch Our Story</h2>
             <div class="section-divider"></div>
             <p class="section-subtitle reveal">Experience the Craftsmanship</p>
-            <div class="video-wrapper reveal">
+            <div class="video-wrapper-16-9 reveal">
                 <video autoplay muted loop playsinline>
-                    <source src="videos/2.1.mp4" type="video/mp4">
+                    <source src="videos/3.1.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
@@ -1527,7 +2439,7 @@
     <section class="contact-section" id="contact">
         <div class="container">
             <h2 class="section-title reveal">Get In Touch</h2>
-            <div class="section-divider"></div>
+            <div class="section-divider gold"></div>
             <p class="section-subtitle reveal">We'd Love to Hear From You</p>
             <div class="contact-box reveal">
                 <p
@@ -1587,34 +2499,6 @@
         </div>
     </section>
 
-    <!-- Explore Brands -->
-    <section class="brands-new" id="explore">
-        <div class="container">
-            <h2 class="section-title reveal">Explore Brands</h2>
-            <div class="section-divider"></div>
-            <p class="section-subtitle reveal">World-Renowned Watchmakers</p>
-            <div class="brands-new-grid reveal">
-                <div class="brand-mini-card"><img src="https://i.postimg.cc/C5X6xrZG/ddddd.avif" alt="Piaget"
-                        loading="lazy"><span class="brand-name-tag">PIAGET</span></div>
-                <div class="brand-mini-card"><img src="https://i.postimg.cc/KzXP4XQv/gggg-removebg-preview.png"
-                        alt="Vacheron Constantin" loading="lazy"><span class="brand-name-tag">VACHERON CONSTANTIN</span>
-                </div>
-                <div class="brand-mini-card"><img src="https://i.postimg.cc/vTkSZ219/rrr.webp" alt="Harry Winston"
-                        loading="lazy"><span class="brand-name-tag">HARRY WINSTON</span></div>
-                <div class="brand-mini-card"><img src="https://i.postimg.cc/9MVYQtgy/h.avif" alt="Rolex"
-                        loading="lazy"><span class="brand-name-tag">ROLEX</span></div>
-                <div class="brand-mini-card"><img src="https://i.postimg.cc/vTcNMwmt/yyyyy.avif" alt="F.P. Journe"
-                        loading="lazy"><span class="brand-name-tag">F.P. JOURNE</span></div>
-                <div class="brand-mini-card"><img src="https://i.postimg.cc/G2rxmJgD/j.avif" alt="Chopard"
-                        loading="lazy"><span class="brand-name-tag">CHOPARD</span></div>
-                <div class="brand-mini-card"><img src="https://i.postimg.cc/B6sBnc71/k.webp" alt="Graff"
-                        loading="lazy"><span class="brand-name-tag">GRAFF</span></div>
-                <div class="brand-mini-card"><img src="https://i.postimg.cc/63wfpLbq/l.webp" alt="Hublot"
-                        loading="lazy"><span class="brand-name-tag">HUBLOT</span></div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1662,7 +2546,8 @@
                 <div class="pay-card"><img src="https://i.postimg.cc/4NyVMTF6/american-express-svgrepo-com.jpg"
                         alt="American Express"></div>
                 <div class="pay-card"><img src="https://i.postimg.cc/CL5ktV6b/apple-pay-svgrepo-com.jpg"
-                        alt="Apple Pay"></div>
+                        alt="Apple Pay">
+                </div>
                 <div class="pay-card"><img src="https://i.postimg.cc/jd2P9rk6/google-pay-svgrepo-com.jpg"
                         alt="Google Pay"></div>
                 <div class="pay-card"><img src="https://i.postimg.cc/dt3rXKSr/mastercard-svgrepo-com.jpg"
@@ -1724,10 +2609,36 @@
         // Navbar scroll shadow
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) { navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)'; } else { navbar.style.boxShadow = 'none'; }
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         });
 
-        console.log('👑 TRX Royal Watches — Premium Luxury Collection Ready');
+        // Mobile Bottom Nav - highlight active
+        const bottomNavLinks = document.querySelectorAll('.mobile-bottom-nav a[href^="#"]');
+        const sections = [];
+        bottomNavLinks.forEach(link => {
+            const id = link.getAttribute('href');
+            const section = document.querySelector(id);
+            if (section) sections.push({ link, section, id });
+        });
+        window.addEventListener('scroll', () => {
+            let currentId = '';
+            sections.forEach(({ link, section, id }) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 200 && rect.bottom >= 200) {
+                    currentId = id;
+                }
+            });
+            bottomNavLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentId) link.classList.add('active');
+            });
+        });
+
+        console.log('👑 TRX Royal Watches — Premium Luxury Collection Ready | All Updates Applied');
     </script>
 </body>
 
